@@ -22,7 +22,7 @@ class Chat extends Component {
     }
     
     componentDidMount() {
-        const socket = io.connect("localhost:8080");
+        const socket = io.connect("gentle-cove-83918.herokuapp.com");
 
         socket.on("chat_message", data => {
             this.props.receiveMessage(data);
