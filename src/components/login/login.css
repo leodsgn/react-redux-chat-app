@@ -31,7 +31,7 @@
     border: 1px solid #80A1FA;
     background: none;
     padding: 10px 20px;
-    margin: 10px;
+    margin: 10px 0 10px 10px;
     outline: none;
 }
 .login__form input:focus {
@@ -39,7 +39,7 @@
 }
 
 .login__form button {
-    padding: 10px 20px;
+    padding: 11px 20px;
     background-color: #80A1FA;
     color: #ffffff;
     border: none;

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router-dom';
 
 import { registerName } from "../../actions/action_creators";
 
@@ -15,9 +16,10 @@ class Login extends Component {
         super(props)
     }
 
-    submitName({name}) {
-        // console.log(`sending name ${name} to dispatch...`);
-        this.props.registerName(name);
+    componentWillMount() {
+        if(!localStorage.getItem("name")) {
+            <Redirect path="/chat"></Redirect>
+        }
     }
 
     render() {
@@ -31,7 +33,7 @@ class Login extends Component {
                         <img src={chatbg} alt="" />
                     </figure>
                     <div className="login__form">
-                        <form onSubmit={handleSubmit(handleSubmit(registerName))}>
+                        <form onSubmit={handleSubmit(registerName)}>
                             <Field name="name" component="input" type="text" placeholder="Enter your name" />
                             <button type="submit">Entrar no chat</button>
                         </form>

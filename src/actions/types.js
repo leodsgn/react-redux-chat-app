@@ -5,3 +5,4 @@ export const SEND_MESSAGE = "send_message";
 export const RECEIVE_MESSAGE = "receive_message";
 export const WAIT_REQUEST = "wait_request";
 export const IS_ERROR = "is_error";
+export const IS_SENDING_MESSAGE = "is_sending_message";
