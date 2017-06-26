@@ -1,1 +1,1 @@
-web: node ./server/index.js
+web: yarn && node ./server/index.js
