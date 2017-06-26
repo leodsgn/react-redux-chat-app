@@ -2,7 +2,7 @@ import { SEND_MESSAGE, DO_LOGIN, RECEIVE_MESSAGE, DO_REGISTER, DO_LOGOUT, IS_ERR
 
 import IO from 'socket.io-client';
 
-const io = IO("localhost:3001");
+const io = IO("localhost");
 
 // =========== register ============
 

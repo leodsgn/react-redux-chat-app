@@ -22,7 +22,7 @@ class Chat extends Component {
     }
     
     componentDidMount() {
-        const socket = io.connect("localhost:3001");
+        const socket = io.connect("localhost");
 
         socket.on("chat_message", data => {
             this.props.receiveMessage(data);
