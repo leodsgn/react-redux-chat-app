@@ -4,14 +4,16 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const path = require('path');
 
+var port = process.env.PORT || 8080;
+
 app.use(express.static(path.resolve(__dirname, "../build")));
 
 app.get("/", function(req, res){
     res.sendFile(path.resolve(__dirname, "../build/index.html"));
 }) 
 
-http.listen(3001, function(){
-    console.log("listening on *:3001");
+http.listen(port, function(){
+    console.log("listening on *:" + port);
 })
 
 io.on("connection", function(socket){
