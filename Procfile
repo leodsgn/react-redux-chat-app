@@ -1,2 +1,1 @@
-web: yarn start
-web: node ./server/index.js
+web: yarn start && node ./server/index.js
