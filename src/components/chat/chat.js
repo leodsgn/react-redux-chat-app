@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { sendMessage, receiveMessage } from '../../actions/action_creators';
 import io from 'socket.io-client';
-import * as history from 'history';
 
 import './chat.css';
 
@@ -22,7 +21,7 @@ class Chat extends Component {
     }
     
     componentDidMount() {
-        const socket = io.connect("gentle-cove-83918.herokuapp.com");
+        const socket = io.connect("localhost:3001");
 
         socket.on("chat_message", data => {
             this.props.receiveMessage(data);

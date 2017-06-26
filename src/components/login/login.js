@@ -22,9 +22,14 @@ class Login extends Component {
         }
     }
 
+    doSubmit({name}) {
+        this.props.registerName({name});
+        <Redirect to="/chat"/>
+    }
+
     render() {
 
-        const { handleSubmit, registerName } = this.props
+        const { handleSubmit } = this.props
 
         return (
             <main className="login_page">

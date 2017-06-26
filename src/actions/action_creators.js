@@ -2,7 +2,7 @@ import { SEND_MESSAGE, DO_LOGIN, RECEIVE_MESSAGE, DO_REGISTER, DO_LOGOUT, IS_ERR
 
 import IO from 'socket.io-client';
 
-const io = IO("gentle-cove-83918.herokuapp.com");
+const io = IO("localhost:3001");
 
 // =========== register ============
 
