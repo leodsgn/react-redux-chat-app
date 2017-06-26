@@ -1,5 +1,4 @@
 import { SEND_MESSAGE, DO_LOGIN, RECEIVE_MESSAGE, DO_REGISTER, DO_LOGOUT, IS_ERROR } from './types';
-import { Redirect } from 'react-router-dom';
 
 import IO from 'socket.io-client';
 

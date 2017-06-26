@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from './reducers/__reducers';
@@ -18,7 +18,9 @@ ReactDOM.render(
     <Provider store={creteStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
         <Router>
             <Switch>
-                <Route exact path="/" component={LoginPage}/>
+                <Route exact path="/" render={ () => (
+                    localStorage.getItem("name") ? (<Redirect to="/chat" />) : (<LoginPage />)
+                 ) }/>
                 <Route path="/chat" component={ChatPage}/>
             </Switch>
         </Router>

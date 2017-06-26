@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { sendMessage, receiveMessage } from '../../actions/action_creators';
 import io from 'socket.io-client';
+import * as history from 'history';
 
 import './chat.css';
 
@@ -26,6 +27,12 @@ class Chat extends Component {
         socket.on("chat_message", data => {
             this.props.receiveMessage(data);
         })
+    }
+
+    componentWillMount() {
+        if(!localStorage.getItem("name")) {
+            history.createBrowserHistory().push("/");
+        }
     }
 
     submitMessage(data) {

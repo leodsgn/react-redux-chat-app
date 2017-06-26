@@ -1,9 +1,10 @@
 const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
+const path = require('path');
 
 app.get("/", function(req, res){
-    res.send("<h1>Hello World</h1>");
+    res.sendFile(path.resolve(__dirname, "../public/index.html"));
 }) 
 
 http.listen(3001, function(){
