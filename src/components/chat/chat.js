@@ -10,7 +10,7 @@ import './chat.css';
 require("dotenv").config();
 
 const port = 8080;
-const host = "gentle-cove-83918.herokuapp.com";
+const host = "gentle-cove-83918.herokuapp.com:" + port;
 
 class Chat extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class Chat extends Component {
     }
     
     componentDidMount() {
-        const socket = io.connect(host + ":" + port);
+        const socket = io.connect(host);
 
         socket.on("chat_message", data => {
             this.props.receiveMessage(data);

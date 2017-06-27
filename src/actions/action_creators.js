@@ -4,9 +4,9 @@ import IO from 'socket.io-client';
 require("dotenv").config({path: "../../"});
 
 const port = 8080;
-const host = "gentle-cove-83918.herokuapp.com";
+const host = "gentle-cove-83918.herokuapp.com:" + port;
 
-const io = IO(host + ":" + port);
+const io = IO(host);
 
 // =========== register ============
 
