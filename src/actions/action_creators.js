@@ -3,14 +3,16 @@ import IO from 'socket.io-client';
 
 require("dotenv").config({path: "../../"});
 
-const host = process.env.HOST || "https://gentle-cove-83918.herokuapp.com"; 
-// const port = process.env.PORT || 8080;
+const host = process.env.HOST || "localhost"; 
+const port = process.env.PORT || 3001;
 
-const io = IO(host);
+const io = IO(host + ":" + port);
 
 // =========== register ============
 
 export const registerName = ({name}) => dispatch => {
+
+    console.log(port + host);
 
     console.log(`name ${name} wil be dispatched`);
 
