@@ -4,7 +4,7 @@ import IO from 'socket.io-client';
 require("dotenv").config({path: "../../"});
 
 const port = process.env.PORT || 8080;
-const host = process.env.HOST || "0.0.0.0";
+const host = process.env.HOST || "gentle-cove-83918.herokuapp.com";
 
 const io = IO(host + ":" + port);
 
