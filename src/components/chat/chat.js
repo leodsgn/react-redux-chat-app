@@ -10,7 +10,7 @@ import './chat.css';
 require("dotenv").config();
 
 const port = process.env.PORT || 8080;
-const host = process.env.HOST || "gentle-cove-83918.herokuapp.com";
+const host = process.env.HOST || "localhost";
 
 class Chat extends Component {
     constructor(props) {
