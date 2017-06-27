@@ -10,6 +10,7 @@ import { registerName } from "../../actions/action_creators";
 import "./login.css";
 import chatbg from "./chatbg.png";
 
+require("dotenv").config();
 
 class Login extends Component {
     constructor(props){
@@ -17,14 +18,14 @@ class Login extends Component {
     }
 
     componentWillMount() {
-        if(!localStorage.getItem("name")) {
-            <Redirect path="/chat"></Redirect>
+        if(localStorage.getItem("name")) {
+            this.props.history.push("/chat");
         }
     }
 
     doSubmit({name}) {
+        this.props.history.push("/chat");
         this.props.registerName({name});
-        <Redirect to="/chat"/>
     }
 
     render() {
@@ -38,7 +39,7 @@ class Login extends Component {
                         <img src={chatbg} alt="" />
                     </figure>
                     <div className="login__form">
-                        <form onSubmit={handleSubmit(registerName)}>
+                        <form onSubmit={handleSubmit(this.doSubmit.bind(this))}>
                             <Field name="name" component="input" type="text" placeholder="Enter your name" />
                             <button type="submit">Entrar no chat</button>
                         </form>
@@ -52,7 +53,8 @@ class Login extends Component {
 
 function mapStateToProps(state) {
     return {
-        ...state.form
+        ...state.form,
+        ...state.history
     }
 }
 

@@ -1,12 +1,18 @@
 import { SEND_MESSAGE, DO_LOGIN, RECEIVE_MESSAGE, DO_REGISTER, DO_LOGOUT, IS_ERROR } from './types';
-
 import IO from 'socket.io-client';
 
-const io = IO("localhost:3001");
+require("dotenv").config({path: "../../"});
+
+const port = process.env.PORT || 8080;
+const host = process.env.HOST || "0.0.0.0";
+
+const io = IO(host + ":" + port);
 
 // =========== register ============
 
 export const registerName = ({name}) => dispatch => {
+
+    console.log(port + host);
 
     console.log(`name ${name} wil be dispatched`);
 
@@ -18,6 +24,7 @@ export const registerName = ({name}) => dispatch => {
         type: DO_LOGIN,
         payload: { name }
     })
+    
 
 }
 

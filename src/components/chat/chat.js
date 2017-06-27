@@ -1,37 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { sendMessage, receiveMessage } from '../../actions/action_creators';
 import io from 'socket.io-client';
 
 import './chat.css';
 
+require("dotenv").config();
+
+const port = process.env.PORT || 8080;
+const host = process.env.HOST || "0.0.0.0";
+
 class Chat extends Component {
     constructor(props) {
         super(props)
     }
 
-    renderChatList() {
-        return [
-            <li key={1} className="to_left">Hey man, how r u doing?</li>,
-            <li key={2} className="to_left">have news?</li>,
-            <li key={3} className="to_right">Sup man How are you</li>
-        ]
+    componentWillMount() {
+        if(!localStorage.getItem("name")) {
+            this.props.history.push("/");
+        }
     }
     
     componentDidMount() {
-        const socket = io.connect("localhost:3001");
+        const socket = io.connect(host + ":" + port);
 
         socket.on("chat_message", data => {
             this.props.receiveMessage(data);
         })
-    }
-
-    componentWillMount() {
-        if(!localStorage.getItem("name")) {
-            history.createBrowserHistory().push("/");
-        }
     }
 
     submitMessage(data) {
@@ -41,6 +38,9 @@ class Chat extends Component {
 
         sendMessage({message});
         reset();
+        setTimeout(function() {
+            document.querySelector(".chat__section").scrollTop = document.querySelector(".chat__section").scrollHeight;
+        }, 100);
     }
 
     render(){
@@ -48,6 +48,7 @@ class Chat extends Component {
         const { handleSubmit, sendMessage, receiveMessage } = this.props;
 
         return (
+            localStorage.getItem("name") ?
             <main className="chat_page">
                 <section className="chat">
                     <section className="chat__section">
@@ -64,12 +65,13 @@ class Chat extends Component {
                     </section>
                     <div className="chat__form">
                         <form onSubmit={handleSubmit(this.submitMessage.bind(this))}>
-                            <Field name="message" component="input" type="text" placeholder="Enter your name" />
+                            <Field name="message" component="input" type="text" placeholder="Enter your message" />
                             <button type="submit">Send message</button>
                         </form>
                     </div>
                 </section>
             </main>
+            : <Redirect to="/" />
         )
     }
 }
