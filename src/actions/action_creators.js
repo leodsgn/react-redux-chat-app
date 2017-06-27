@@ -6,7 +6,7 @@ require("dotenv").config({path: "../../"});
 const host = process.env.HOST || "gentle-cove-83918.herokuapp.com"; 
 const port = process.env.PORT || 8080;
 
-const io = IO(host);
+const io = IO(host + ":" + port);
 
 // =========== register ============
 
